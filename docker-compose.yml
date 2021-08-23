@@ -1,0 +1,15 @@
+version: '3'
+services:
+    rabbitmq:
+        image: rabbitmq:management
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+    springboottest:
+        image: springboottest:staging
+        ports:
+            - "8080:8080"
+        depends_on:
+            - rabbitmq
+        environment:
+            -  SPRING_RABBITMQ_HOST=rabbitmq
